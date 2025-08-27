@@ -1,0 +1,241 @@
+@font-face {
+  font-family: Inter; font-display: swap; src: url("assets/Inter-Regular.woff2"); font-weight: 300;
+}
+@font-face {
+  font-family: Inter; font-display: swap; src: url("assets/Inter-Bold.woff2"); font-weight: 700;
+}
+@font-face {
+  font-family: Inter; font-display: swap; src: url("assets/Inter-BoldItalic.woff2"); font-weight: 700; font-style: italic;
+}
+@font-face {
+  font-family: Inter; font-display: swap; src: url("assets/Inter-Italic.woff2"); font-weight: 300; font-style: italic;
+}
+
+:root {
+  --main-font: Inter, sans-serif;
+  --font-size-base: 16px;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+}
+
+* {
+  font-family: var(--main-font);
+}
+body {
+  font-size: var(--font-size-base);
+  background-color: #333;
+  box-sizing: border-box;
+  padding: 8px;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#formula-wrapper, .controls {
+  flex-grow: 1;
+}
+#formula-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+#formula {
+  text-align: right;
+  flex-grow: 1;
+  max-width: 100%;
+  font-size: 2rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow-y: auto;
+}
+.controls {
+  display: flex;
+  flex-direction: column;
+  max-height: 320px;
+  gap: 2px;
+}
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+.h-65 {
+  height: 65px;
+}
+#b {
+  display: none;
+}
+.buttons button {
+  user-select: none;
+  min-width: 65px;
+  background-color: black;
+  /* border: 2px solid black; */
+  border: none;
+  border-radius: 5px;
+  font-size: 1.25rem;
+  color: whitesmoke;
+  transition: 0.25s;
+  &:hover {
+    background-color: #1d1d1d;
+    color: white;
+  }
+}
+#eq {
+  grid-column: 3 / span 2;
+  background-color: forestgreen;
+}
+#eq:hover {
+  background-color: #28a928;
+}
+#backspace {
+  background-color: red;
+}
+#backspace:hover {
+  background-color: #ff1a1a;
+}
+#ch_ext {
+  background-color: orangered;
+}
+#ch_ext:hover {
+  background-color: #ff5719;
+}
+.misc {
+  display: flex;
+}
+.misc button, .misc a {
+  padding: 5px;
+  background-color: #333;
+  border: none;
+  &:hover {
+    background-color: #3b3b3b;
+  }
+  &:disabled {
+    opacity: 50%;
+  }
+}
+.filler {
+  flex-grow: 1;
+}
+#back {
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  background-color: dodgerblue;
+  max-width: fit-content;
+}
+.history-panel {
+  display: none;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(32, 32, 32);
+  padding: 10px;
+}
+.history-panel .header {
+  display: flex;
+  align-items: center;
+}
+.history-panel .header h1 {
+  font-size: 2.25rem;
+}
+#closeHistory {
+  font-size: 2rem;
+  height: fit-content;
+  background-color: black;
+  border: none;
+  padding: 5px 10px;
+  &:hover {
+    background-color: rgb(15, 15, 15);
+  }
+}
+#history-lines {
+  font-size: 1.5rem;
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.developers {
+  display: flex;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1d1d1d;
+  padding: 10px;
+  border-radius: 5px;
+}
+h2 {
+  margin: 0;
+}
+select {
+  border: none;
+  outline: none;
+  background-color: #1d1d1d;
+  padding: 5px;
+}
+.hbox {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.hbox * {
+  font-size: 1.25rem;
+}
+.hbox p {
+  text-align: center;
+}
+.hbox input {
+  width: 15vw;
+  border: none;
+  border-bottom: 2px solid gray;
+  background: none;
+  outline: none;
+}
+.hbox input:focus {
+  border-bottom: 2px solid white;
+}
+input#base-money {
+  width: 45vw;
+}
+input#period {
+  width: 20vw;
+}
+#result-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  min-height: 150px;
+  border-bottom: 2px solid white;
+}
+#result {
+  margin: 5px;
+}
+#calc {
+  background-color: #1d1d1d;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: lightgray;
+}
+#calc:hover {
+  color: white;
+}
+#calc:disabled {
+  opacity: 50%;
+}
+.acenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

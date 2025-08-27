@@ -5,6 +5,7 @@
     <author href="https://github.com/riizlaah">
         Naf'an Rizkilah
     </author>
+    <icon src="res/icon.png" width="192" height="192" />
     <content src="index.html" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
