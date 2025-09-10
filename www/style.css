@@ -27,7 +27,7 @@ body {
   box-sizing: border-box;
   padding: 8px;
   margin: 0;
-  width: 100vw;
+  width: clamp(320, 100vw, 512);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -168,9 +168,7 @@ body {
 }
 .card {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
   background-color: #1d1d1d;
   padding: 10px;
   border-radius: 5px;
@@ -200,13 +198,14 @@ select {
   border: none;
   border-bottom: 2px solid gray;
   background: none;
+  text-align: center;
   outline: none;
 }
 .hbox input:focus {
   border-bottom: 2px solid white;
 }
 input#base-money {
-  width: 45vw;
+  width: 40vw;
 }
 input#period {
   width: 20vw;
@@ -232,10 +231,16 @@ input#period {
   color: white;
 }
 #calc:disabled {
+  background-color: firebrick;
   opacity: 50%;
 }
 .acenter {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.vbox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

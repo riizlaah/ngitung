@@ -5,9 +5,6 @@ function gete(s) {
 function getes(s) {
   return document.querySelectorAll(s);
 }
-function print(...s) {
-  console.log(...s);
-}
 
 // DOM Elements
 const formula = gete("#formula");
@@ -24,10 +21,8 @@ const closeHistory = gete("#closeHistory");
 const historyLines = gete("#history-lines");
 const historyPanel = gete(".history-panel");
 
-print(historyBtn)
-
 // State management
-let calculationHistory = [];
+let calculationHistory = localStorage.getItem('history') ? JSON.parse(localStorage.getItem('history')) : [];
 let historyIndex = -1;
 let undoStack = [];
 let redoStack = [];
@@ -44,33 +39,29 @@ undoBtn.onclick = undo;
 redoBtn.onclick = redo;
 historyBtn.onclick = showHistory;
 closeHistory.onclick = () => {historyPanel.style.display = "none"};
-ch_ext.onclick = () => {
-  extra_visible = !extra_visible
-  if(extra_visible) {
-    btns_a.style.display = 'none';
-    btns_b.style.display = 'grid';
-  } else {
-    btns_a.style.display = 'grid';
-    btns_b.style.display = 'none';
-  }
-};
+// ch_ext.onclick = () => {
+//   extra_visible = !extra_visible
+//   if(extra_visible) {
+//     btns_a.style.display = 'none';
+//     btns_b.style.display = 'grid';
+//   } else {
+//     btns_a.style.display = 'grid';
+//     btns_b.style.display = 'none';
+//   }
+// };
 
 // Main Functions
 function handleButtonClick(e) {
   const char = e.target.textContent;
   const currentFormula = formula.textContent;
-  
   // Validate input
   if (!isValidInput(currentFormula, char)) {
     return;
   }
-
   // Save state for undo/redo
   saveState(currentFormula);
-  
   // Handle special characters
   formula.textContent += char;
-  
   updateButtons();
 }
 
@@ -78,21 +69,15 @@ function isValidInput(currentFormula, char) {
   if(formula.textContent == "Error") formula.textContent = "";
   const lastChar = currentFormula.slice(-1);
   const operators = ['+', '-', '×', '/', '^'];
-  
-  
   // Prevent consecutive operators
   if (operators.includes(lastChar) && operators.includes(char)) {
     return false;
   }
-  
-  
   // Prevent operator at start (except minus)
   if (currentFormula === '' && operators.includes(char) && char !== '-') {
     return false;
   }
-
   if(lastChar === "%" && (char === '%' || !operators.includes(char))) return false;
-  
   // Handle decimal point
   if (char === '.') {
     // Check if current number already has a decimal point
@@ -102,7 +87,6 @@ function isValidInput(currentFormula, char) {
       return false;
     }
   }
-  
   return true;
 }
 
@@ -110,10 +94,8 @@ function calculate() {
   let expr = formula.textContent;
   let friendlyExpr = expr;
   saveState(formula.textContent)
-  
   // Replace display symbols with math symbols
   expr = expr.replace(/×/g, '*').replace(/√/g, 'Math.sqrt').replace(/([0-9a-zA-Z\+-\/\*\^]+)\^([0-9a-zA-Z\+-\/\*\^]+)/g, 'Math.pow($1, $2)');
-  
   try {
     // Handle parentheses
     const openCount = (expr.match(/\(/g) || []).length;
@@ -121,17 +103,14 @@ function calculate() {
     if (openCount !== closeCount) {
       throw new Error("Unbalanced parentheses");
     }
-    
     // Handle percentage
     expr = expr.replace(/([0-9]+)%/g, '($1/100)');
-    
     // Evaluate safely
     const result = Function(`"use strict"; return (${expr})`)();
-    
     // Save to history
     calculationHistory.push(`${friendlyExpr} = ${result}`);
+    localStorage.setItem('history', JSON.stringify(calculationHistory));
     historyIndex = calculationHistory.length - 1;
-    
     // Update formula with result
     formula.textContent = result.toString();
   } catch (error) {

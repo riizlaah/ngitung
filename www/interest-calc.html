@@ -13,12 +13,12 @@
   <div class="misc">
     <h2 class="acenter filler">Kalkulator Bunga</h2>
     <a href="index.html">
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
       </svg>
     </a>
     <a href="about.html" id="about-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-info-circle" viewBox="0 0 16 16">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" class="bi bi-info-circle" viewBox="0 0 16 16">
         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
         <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
       </svg>
@@ -34,7 +34,15 @@
         <option value="1">Pinjaman</option>
       </select>
       <p>pokok</p>
-      <input type="text" id="base-money" inputmode="numeric">
+      <input type="text" id="base-money" inputmode="numeric" value="12000000">
+    </div>
+    <div class="hbox" id="instalment">
+      <p>Angsuran per</p>
+      <input type="text" id="instalment-inp" inputmode="numeric" value="1">
+      <select id="instalment-period">
+        <option value="0" selected>Bulan</option>
+        <option value="1">Tahun</option>
+      </select>
     </div>
     <div class="hbox">
       <p>Bunga per</p>
@@ -42,7 +50,7 @@
         <option value="0" selected>Bulan</option>
         <option value="1">Tahun</option>
       </select>
-      <input type="text" id="interest" inputmode="numeric">
+      <input type="text" id="interest" inputmode="numeric" value="1">
       <p style="text-align: left;">%</p>
     </div>
     <div class="hbox">
@@ -54,9 +62,9 @@
     </div>
     <div class="hbox">
       <p>Periode</p>
-      <input type="text" id="period" inputmode="numeric">
+      <input type="text" id="period" inputmode="numeric" value="6">
       <select id="period-type">
-        <option value="0">Bulan</option>
+        <option value="0" selected>Bulan</option>
         <option value="1">Tahun</option>
       </select>
     </div>
